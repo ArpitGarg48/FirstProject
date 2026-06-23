@@ -148,14 +148,25 @@ export const Employees = () => {
                   <label className="block text-amber-700 text-xl text-center">
                     {label}
                   </label>
-                  <input
-                    type="text"
-                    name={name}
-                    value={formData[name] || ""}
-                    onChange={handleChange}
-                    placeholder={`Enter Employee ${label}`}
-                    className="w-full border-2 text-center rounded-2xl p-2"
-                  />
+                  
+                  {["EmpDoB", "EmpJoin"].includes(name) ? (
+                    <input
+                      type="date"
+                      name={name}
+                      value={formData[name] || ""}
+                      onChange={handleChange}
+                      className="w-full border-2 text-center rounded-2xl p-2"
+                    />
+                  ) : (
+                    <input
+                      type="text"
+                      name={name}
+                      value={formData[name] || ""}
+                      onChange={handleChange}
+                      placeholder={`Enter Employee ${label}`}
+                      className="w-full border-2 text-center rounded-2xl p-2"
+                    />
+                  )}
                 </div>
               ))}
 
@@ -180,4 +191,4 @@ export const Employees = () => {
       </Dialog>
     </>
   );
-};
+}; 
