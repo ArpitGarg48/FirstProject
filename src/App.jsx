@@ -28,7 +28,6 @@ function App() {
           <Route path="performance" element={<Performance/>}/>
           <Route path="report" element={<Report/>}/>
           <Route path="setting" element={<Setting/>}/>
-
           </Route>
         </Routes>
       </BrowserRouter>
