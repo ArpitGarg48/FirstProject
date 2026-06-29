@@ -38,15 +38,17 @@ export default function SignUp() {
       formError.wrongpass = "The confirm password does not match";
     }
     else{
-      axios.post("http://localhost:5000/api/signup", signupData).then((res)=>{
-        alert(res.data);      
+      axios.post("http://localhost:5000/api/signup", signupData)
+      .then((res)=>{
+        alert("User Created"); 
+        navigate("/");
+
       })
       .catch((err)=>{
         console.log(err.response.data);
         
       })
 
-      // navigate("/panel")
     }
     setError(formError);
 

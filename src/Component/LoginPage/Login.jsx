@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function Login() {
   let [loginData, setLoginData] = useState({})
@@ -34,8 +35,14 @@ export default function Login() {
 
 
     else {
-      console.log("Api data", loginData)
-      navigate("/panel");
+      axios.post("http://localhost:5000/api/login", loginData)
+      .then((res)=>{
+        alert("Login Successfull");
+        navigate("/panel");
+      })
+      .catch((err)=>{
+        console.log(err.response.data);
+      })
     }
 
 
