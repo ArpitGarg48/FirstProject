@@ -148,7 +148,7 @@ export const Employees = () => {
                   <label className="block text-amber-700 text-xl text-center">
                     {label}
                   </label>
-                  
+
                   {["EmpDoB", "EmpJoin"].includes(name) ? (
                     <input
                       type="date"

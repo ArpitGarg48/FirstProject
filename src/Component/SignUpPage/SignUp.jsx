@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignUp() {
   const [signupData, setSignupData] = useState({});
   const [error, setError] = useState({});
-  let navigate=useNavigate();
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,11 +33,20 @@ export default function SignUp() {
 
     if (!signupData.confirmPassword) {
       formError.confirmPassword = "Confirm Password is required";
-    } else if (signupData.password !== signupData.confirmPassword) {
+    } 
+    else if (signupData.password !== signupData.confirmPassword) {
       formError.wrongpass = "The confirm password does not match";
     }
     else{
-      navigate("/panel")
+      axios.post("http://localhost:5000/api/signup", signupData).then((res)=>{
+        alert(res.data);      
+      })
+      .catch((err)=>{
+        console.log(err.response);
+        
+      })
+
+      // navigate("/panel")
     }
     setError(formError);
 
