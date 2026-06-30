@@ -1,8 +1,25 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 export const Attendence = () => {
+
+  const [count, setCount] = useState(0);
+
+  const fetchEmployee = () => {
+    axios.get("http://localhost:5000/api/get/employee")
+      .then((res) => {
+        setCount(res.data.count);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  useEffect(() => {
+    fetchEmployee();
+  }, []);
   return (
-  
+
     <main className="space-y-6">
       <section className="rounded-3xl bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -26,7 +43,7 @@ export const Attendence = () => {
           <h4 className="text-sm font-medium text-slate-500">
             Total Employees
           </h4>
-          <p className="mt-4 text-3xl font-semibold text-slate-900">248</p>
+          <p className="mt-4 text-3xl font-semibold text-slate-900">{count}</p>
         </div>
         <div className="rounded-3xl bg-white p-6 shadow-sm">
           <h4 className="text-sm font-medium text-slate-500">Present</h4>
