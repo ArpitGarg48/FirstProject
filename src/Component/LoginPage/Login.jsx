@@ -37,8 +37,17 @@ export default function Login() {
     else {
       axios.post("http://localhost:5000/api/login", loginData)
       .then((res)=>{
-        alert("Login Successfull");
-        navigate("/panel");
+        let {success, message, token} = res.data;
+        console.log("Full response:", res.data);
+
+        if(success){
+          alert("Login Successfull",token);
+          console.log("Token:", token);
+
+          localStorage.setItem("auth_token",token);
+          navigate("/panel");
+        }
+        
       })
       .catch((err)=>{
         console.log(err.response.data);

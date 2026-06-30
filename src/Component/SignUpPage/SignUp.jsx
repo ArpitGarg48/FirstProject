@@ -40,8 +40,16 @@ export default function SignUp() {
     else{
       axios.post("http://localhost:5000/api/signup", signupData)
       .then((res)=>{
-        alert("User Created"); 
-        navigate("/");
+        let {success, message, token} = res.data;
+        console.log("Full response:", res.data);
+
+        if(success){
+          alert("User Created"); 
+          console.log("Token:", token);
+
+          localStorage.setItem("auth_token",token);
+          navigate("/");
+        }
 
       })
       .catch((err)=>{
